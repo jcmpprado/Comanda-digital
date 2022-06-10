@@ -13,7 +13,7 @@
       <v-divider></v-divider>
 
       <v-list dense nav>
-        <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
+        <v-list-item v-for="item in items" :key="item.title" :to="item.to" link @click="fechaNavBar()">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -51,5 +51,11 @@ export default {
     ],
     right: null,
   }),
+
+  methods: {
+    fechaNavBar(){
+      this.drawer = false;
+    }
+  },
 };
 </script>

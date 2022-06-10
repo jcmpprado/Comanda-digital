@@ -15,6 +15,11 @@ const routes = [
     name: 'Login',
     component: () => import('../views/Login.vue'),
   },
+  {
+    path: '/abertura',
+    name: 'Abertura',
+    component: () => import('../views/users/Abertura.vue'),
+  },
 ]
 
 const router = new VueRouter({
