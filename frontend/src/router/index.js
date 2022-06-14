@@ -50,6 +50,11 @@ const routes = [
     name: 'CardapioAdmin',
     component: () => import('../views/admin/CardapioAdmin.vue'),
   },
+  {
+    path: '/agradecimento',
+    name: 'Agradecimento',
+    component: () => import('../views/users/Agradecimento.vue'),
+  },
 ]
 
 const router = new VueRouter({
