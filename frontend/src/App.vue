@@ -2,12 +2,11 @@
   <v-container>
     <NavBar />
     <!-- <NavBarCliente /> -->
-    
   </v-container>
 </template>
 
 <script>
-import NavBar from "./components/Shared/NavBar.vue";
+import NavBar from "./components/Shared/NavegationDrawer.vue";
 // import NavBarCliente from './components/Navbar/NavBarCliente.vue';
 
 export default {
@@ -22,3 +21,12 @@ export default {
   }),
 };
 </script>
+
+
+<style>
+.v-application--wrap {
+   
+    min-height: 0vh;
+   
+}
+</style>

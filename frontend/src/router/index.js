@@ -25,6 +25,16 @@ const routes = [
     name: 'Apresentacao',
     component: () => import('../views/users/Apresentacao.vue'),
   },
+  {
+    path: '/minha-conta',
+    name: 'MinhaConta',
+    component: () => import('../views/users/MinhaConta.vue'),
+  },
+  {
+    path: '/cardapio',
+    name: 'Cardapio',
+    component: () => import('../views/users/Cardapio.vue'),
+  },
 ]
 
 const router = new VueRouter({
