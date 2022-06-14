@@ -36,7 +36,7 @@
     <v-app-bar color="black" dense elevation="4" rounded dark app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase grey--text">
-        <v-btn dark text @click="minhaConta()">Pedidos</v-btn>
+        <v-btn dark text @click="resumoPedidos()">Pedidos</v-btn>
         <v-btn dark text @click="cardapio()">Cardápio</v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -75,8 +75,12 @@ export default {
     },
 
     cardapio() {
-      this.$router.push({ name: "Cardapio" });
+      this.$router.push({ name: "CardapioAdmin" });
 
+    },
+
+    resumoPedidos() {
+      this.$router.push({ name: "ResumoPedido" });
     }
   },
 };

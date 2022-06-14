@@ -35,6 +35,21 @@ const routes = [
     name: 'Cardapio',
     component: () => import('../views/users/Cardapio.vue'),
   },
+  {
+    path: '/resumo-admin',
+    name: 'ResumoAdmin',
+    component: () => import('../views/admin/ResumoAdmin.vue'),
+  },
+  {
+    path: '/resumo-pedido',
+    name: 'ResumoPedido',
+    component: () => import('../views/admin/ResumoPedido.vue'),
+  },
+  {
+    path: '/cardapio-admin',
+    name: 'CardapioAdmin',
+    component: () => import('../views/admin/CardapioAdmin.vue'),
+  },
 ]
 
 const router = new VueRouter({

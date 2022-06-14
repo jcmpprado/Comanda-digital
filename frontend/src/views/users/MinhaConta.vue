@@ -149,20 +149,20 @@ export default {
       this.itens = [
         {
           descricao:
-            "Molho de tomate, muçarela, catupiry cremoso, frango e orégano",
+            "Pizza Frango com catupiry - Molho de tomate, muçarela, catupiry cremoso, frango e orégano",
           quantidade: "1",
           valorUnitario: "49,90",
           subtotal: "49,90",
         },
         {
-          descricao: "Creme de leite, granulado e chocolate preto",
+          descricao: "Pizza Brigadeiro - Creme de leite, granulado e chocolate preto",
           quantidade: "1",
           valorUnitario: "39,90",
           subtotal: "39,90",
         },
 
         {
-          descricao: "Coca-Cola Zero 2,5l",
+          descricao: "Refrigerante - Coca-Cola Zero 2,5l",
           quantidade: "2",
           valorUnitario: "9,90",
           subtotal: "19,80",
