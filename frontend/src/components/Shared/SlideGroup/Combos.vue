@@ -2,13 +2,12 @@
   <v-sheet
     class="mx-auto mt-5"
     elevation="8"
-    max-width="800"
-  ><v-title>
+    max-width="1150"
+  ><v-title class="subheading grey--text my-5 titulo">
       Combos
       </v-title>
     <v-slide-group
       v-model="model"
-      class="pa-4"
       active-class="success"
       show-arrows
     >
@@ -21,7 +20,7 @@
           :color="active ? undefined : 'grey lighten-1'"
           class="ma-4"
           height="200"
-          width="100"
+          width="200"
           @click="toggle"
         >
           <v-row
@@ -52,3 +51,13 @@
     }),
   }
 </script>
+
+<style scoped>
+.titulo {
+  display: block;
+  font-size: 1.7em;
+  text-align: left;
+  font-weight: bold;
+  margin: 20px 20px;
+}
+</style>
