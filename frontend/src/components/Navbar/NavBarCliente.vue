@@ -1,38 +1,5 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app dark>
-      <v-card class="flexcard py-5" color="secundary" dark height="200px">
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title class="text-h6">
-              Santa Pizzaria
-            </v-list-item-title>
-            <v-list-item-subtitle> Comanda Digital </v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-card>
-
-      <v-divider></v-divider>
-
-      <v-list dense nav>
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          :to="item.to"
-          link
-          @click="fechaNavBar()"
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
     <v-app-bar color="black" dense elevation="4" rounded dark app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase grey--text">
