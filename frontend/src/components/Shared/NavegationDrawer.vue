@@ -33,7 +33,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar color="black" dense elevation="4" rounded dark app>
+    <v-app-bar color="black" dense elevation="4" dark app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-spacer></v-spacer>
