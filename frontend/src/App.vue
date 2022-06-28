@@ -1,21 +1,23 @@
 <template>
   <v-container>
-    <NavBar />
+    <NavegationDrawerVue />
+      <!-- <router-view /> -->
   </v-container>
 </template>
 
 <script>
-import NavBar from "./components/Shared/NavegationDrawer.vue";
+import NavegationDrawerVue from './components/Shared/NavegationDrawer.vue';
 
 export default {
   name: "App",
 
   components: {
-    NavBar,
+    NavegationDrawerVue,
   },
   data: () => ({
     //
   }),
+
 };
 </script>
 

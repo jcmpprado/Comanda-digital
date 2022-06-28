@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app>
     <v-app-bar color="black" dense elevation="4" rounded dark app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase grey--text">
@@ -32,10 +32,6 @@ export default {
   }),
 
   methods: {
-    fechaNavBar() {
-      this.drawer = false;
-    },
-
     minhaConta() {
       this.$router.push({ name: "MinhaConta" });
 

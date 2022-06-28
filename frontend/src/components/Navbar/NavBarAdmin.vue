@@ -3,8 +3,11 @@
     <v-app-bar color="black" dense elevation="4" rounded dark app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase grey--text">
-        <v-btn dark text @click="resumoPedidos()">Pedidos</v-btn>
         <v-btn dark text @click="cardapio()">Cardápio</v-btn>
+        <v-btn dark text @click="estoque()">Estoque</v-btn>
+        <v-btn dark text @click="financeiro()">Financeiro</v-btn>
+        <v-btn dark text @click="fornecedores()">Fornecedores</v-btn>
+        <v-btn dark text @click="resumoPedidos()">Pedidos</v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -48,7 +51,15 @@ export default {
 
     resumoPedidos() {
       this.$router.push({ name: "ResumoPedido" });
-    }
+    },
+
+    estoque() {
+      this.$router.push({ name: "ControleEstoque" });
+    },
+
+    fornecedores() {
+      this.$router.push({ name: "Fornecedor" });
+    },
   },
 };
 </script>

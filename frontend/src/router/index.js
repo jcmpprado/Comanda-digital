@@ -55,6 +55,16 @@ const routes = [
     name: 'Agradecimento',
     component: () => import('../views/users/Agradecimento.vue'),
   },
+  {
+    path: '/controle-estoque',
+    name: 'ControleEstoque',
+    component: () => import('../views/admin/ControleEstoque.vue'),
+  },
+  {
+    path: '/fornecedor',
+    name: 'Fornecedor',
+    component: () => import('../views/admin/Fornecedor.vue'),
+  },
 ]
 
 const router = new VueRouter({

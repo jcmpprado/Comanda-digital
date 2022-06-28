@@ -4,6 +4,9 @@
     
     <v-card class="mt-5" elevation="14">
       <v-card-title class="justify-center">
+        <v-btn class="mr-4" text icon color="black" @click="voltarPagina()">
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
         <v-spacer> Resumo de pedidos</v-spacer>
       </v-card-title>
       <v-data-table
@@ -93,7 +96,7 @@ export default {
 
   methods: {
     voltarPagina() {
-      this.$router.push({ name: "Apresentacao" });
+      this.$router.push({ name: "ResumoAdmin" });
     },
 
     initialize() {
