@@ -1,9 +1,8 @@
 <template>
-  <v-layout row justify-center mb-3>
+  <v-layout row justify-space-around mb-3>
     <v-dialog v-model="dialogEditarProduto" persistent max-width="800px">
       <template v-slot:activator="{ on }">
         <v-icon
-          class="ma-1"
           color="primary"
           elevation="2"
           small

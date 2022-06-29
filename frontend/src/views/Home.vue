@@ -7,6 +7,7 @@
             <v-card-text>
                <p style="text-align: center">
                   Por favor, realize o login para iniciar a aplicação.
+<div>{{produtos}}</div>
                </p>
             </v-card-text>
          </v-card>
@@ -18,6 +19,11 @@
 import axios from 'axios'
 
 export default {
+   data(){
+      return {
+      produtos: []
+      }
+   },
 
    components: {},
 

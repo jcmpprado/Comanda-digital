@@ -15,12 +15,12 @@
         dense
         class="pr-3 pl-3 mt-5 elevation-1 text-caption"
         :headers="cabecalho"
-        :items="itens"
+        :items="listaDeProdutos"
       >
         <template slot="no-data"> Nenhum produto encontrado. </template>
 
         <template class="text-caption" v-slot:[`item.action`]="{ item }">
-          <v-row justify="center" align="center">
+          <v-row justify="center" align-items="center">
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
                 <DialogEditarProduto class="mt-2" elevation="2" />
@@ -30,7 +30,7 @@
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
                 <v-icon
-                  class="ma-1 mr-2"
+                class="mr-10"
                   color="error"
                   elevation="2"
                   small
@@ -52,10 +52,12 @@
 import NavBarAdmin from "@/components/Navbar/NavBarAdmin.vue";
 import DialogCadastroProduto from "@/components/Shared/dialogs/DialogCadastroProduto.vue";
 import DialogEditarProduto from "@/components/Shared/dialogs/DialogEditarProduto.vue";
+import ProdutoApi from "@/apis/produto/ProdutoApi";
 
 export default {
   data() {
     return {
+      listaDeProdutos: [],
       dialogCadastroProduto: false,
       DialogEditarProduto: false,
       cabecalho: [
@@ -94,6 +96,10 @@ export default {
           value: "action",
         },
       ],
+      categoria: [],
+      produto: [],
+      descricao: [],
+      valor: [],
     };
   },
 
@@ -104,7 +110,7 @@ export default {
   },
 
   created() {
-    this.initialize();
+    this.listarProdutos();
   },
 
   methods: {
@@ -112,34 +118,30 @@ export default {
       this.$router.push({ name: "ResumoAdmin" });
     },
 
-    initialize() {
-      this.itens = [
-        {
-          categoria: "Pizzas Tradicionais",
-          produto: "Frango com catupiry",
-          descricao:
-            "Molho de tomate, muçarela, catupiry cremoso, frango e orégano",
-          valor: "49,90",
-        },
-        {
-          categoria: "Pizzas doces",
-          produto: "Brigadeiro",
-          descricao: "Creme de leite, granulado e chocolate preto",
-          valor: "39,90",
-        },
-        {
-          categoria: "Bebidas",
-          produto: "Refrigerante",
-          descricao: "Coca-Cola Zero 2,5l",
-          valor: "9,90",
-        },
-      ];
+    deleteItem(item) {
+      const index = this.listaDeProdutos.indexOf(item);
+      confirm("Tem certeza que deseja excluir esse item?") &&
+        this.listaDeProdutos.splice(index, 1);
     },
 
-    deleteItem(item) {
-      const index = this.itens.indexOf(item);
-      confirm("Tem certeza que deseja excluir esse item?") &&
-        this.itens.splice(index, 1);
+    listarProdutos() {
+      const listaDeProdutos = {
+        categoria: this.categoriaProduto,
+        produto: this.nomeProduto,
+        descricao: this.descricaoProduto,
+        valor: this.valorProduto,
+      };
+
+      ProdutoApi.listarProdutos(listaDeProdutos).then((response) => {
+        response.data.forEach((item) => {
+          this.listaDeProdutos.push({
+            categoria: item.categoriaProduto,
+            produto: item.nomeProduto,
+            descricao: item.descricaoProduto,
+            valor: item.valorProduto,
+          });
+        });
+      });
     },
   },
 };

@@ -38,7 +38,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn text color="grey" @click="realizarLogout">
+      <v-btn text color="grey" >
         <span>SAIR</span>
         <v-icon right>mdi-logout-variant</v-icon>
       </v-btn>
