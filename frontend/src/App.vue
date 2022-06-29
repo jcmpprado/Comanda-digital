@@ -1,31 +1,27 @@
 <template>
-  <v-container>
-    <NavegationDrawerVue />
+   <v-container>
+      <NavegationDrawerVue />
       <!-- <router-view /> -->
-  </v-container>
+   </v-container>
 </template>
 
 <script>
-import NavegationDrawerVue from './components/Shared/NavegationDrawer.vue';
+import NavegationDrawerVue from './components/Shared/NavegationDrawer.vue'
 
 export default {
-  name: "App",
+   name: 'App',
 
-  components: {
-    NavegationDrawerVue,
-  },
-  data: () => ({
-    //
-  }),
-
-};
+   components: {
+      NavegationDrawerVue,
+   },
+   data: () => ({
+      //
+   }),
+}
 </script>
-
 
 <style>
 .v-application--wrap {
-   
-    min-height: 0vh;
-   
+   min-height: 0vh;
 }
 </style>
