@@ -97,7 +97,7 @@
                   color="primary"
                   elevation="2"
                   small
-                  @click="editar(produto)"
+                  @click="editar(item.idProduto)"
                 >
                   mdi-pencil
                 </v-icon>
@@ -111,7 +111,7 @@
                   color="error"
                   elevation="2"
                   small
-                  @click="deleteItem(produto.idProduto)"
+                  @click="deleteItem(item.idProduto)"
                 >
                   mdi-delete
                 </v-icon>
@@ -216,7 +216,6 @@ export default {
     // },
 
     deleteItem(idProduto) {
-      console.log(idProduto);
       if (confirm("Tem certeza que deseja excluir esse produto?")) {
         ProdutoApi.apagar(idProduto).then((response) => {
           response.data
@@ -280,8 +279,14 @@ export default {
       this.produto.valorProduto = [];
     },
 
-    editar(produto) {
-      this.produto = produto;
+    editar(idProduto) {
+ 
+        ProdutoApi.editar(idProduto, ).then((response) => {
+          response.data
+          this.listarProdutos
+          alert("Produto editado com êxito");
+        });
+      
     },
   },
 };

@@ -15,5 +15,9 @@ export default {
 
     apagar: (idProduto) => {
         return http.delete(`/produto/${idProduto}`)
+    },
+
+    editar: (idProduto) => {
+        return http.patch(`/produto/${idProduto}`)
     }
 }
