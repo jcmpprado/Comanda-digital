@@ -5,7 +5,15 @@ export default {
         return http.get(`/produtos`);
     },
 
-    cadastrarProduto: (novoProduto) => {
-        return http.post(`/produto`);
+    salvar: (produto) => {
+        return http.post(`/produto`,produto);
     },
+
+    atualizar: (produto) => {
+        return http.put(`/produto`,produto);
+    },
+
+    apagar: (idProduto) => {
+        return http.delete(`/produto/${idProduto}`)
+    }
 }
