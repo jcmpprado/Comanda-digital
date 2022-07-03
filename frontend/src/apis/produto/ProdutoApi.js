@@ -19,5 +19,13 @@ export default {
 
     editar: (idProduto) => {
         return http.patch(`/produto/${idProduto}`)
-    }
+    },
+
+    listarEstoque: () => {
+        return http.get(`/estoque`);
+    },
+
+    salvarEstoque: (produto) => {
+        return http.post(`/estoque`,produto);
+    },
 }

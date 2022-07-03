@@ -87,10 +87,7 @@
 
         <template class="text-caption" v-slot:[`item.action`]="{ item }">
           <v-row justify="center" align-items="center">
-            <v-tooltip bottom>
-              <!-- <template v-slot:activator="{ on, attrs }">
-                <DialogEditarProduto class="mt-2" elevation="2" @click="editar(produto)"/>
-              </template> -->
+            <!-- <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
                 <v-icon
                   class="mr-10"
@@ -103,7 +100,7 @@
                 </v-icon>
               </template>
               <span>Editar</span>
-            </v-tooltip>
+            </v-tooltip> -->
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
                 <v-icon
@@ -130,7 +127,6 @@ import NavBarAdmin from "@/components/Navbar/NavBarAdmin.vue";
 import DialogCadastroProduto from "@/components/Shared/dialogs/DialogCadastroProduto.vue";
 import DialogEditarProduto from "@/components/Shared/dialogs/DialogEditarProduto.vue";
 import ProdutoApi from "@/apis/produto/ProdutoApi";
-import { id } from "vuetify/lib/locale";
 
 export default {
   data() {
@@ -209,18 +205,19 @@ export default {
       this.$router.push({ name: "ResumoAdmin" });
     },
 
-    // deleteItem(item) {
-    //   const index = this.listaDeProdutos.indexOf(item);
-    //   confirm("Tem certeza que deseja excluir esse item?") &&
-    //     this.listaDeProdutos.splice(index, 1);
-    // },
-
     deleteItem(idProduto) {
       if (confirm("Tem certeza que deseja excluir esse produto?")) {
         ProdutoApi.apagar(idProduto).then((response) => {
           response.data
-          this.listarProdutos
           alert("Produto excluido com êxito");
+           this.listarProdutos()
+        })
+
+         .catch((error) => {
+          console.log(error);
+          alert("Erro ao excluir produto");
+        })
+        .finally(() => {
         });
       }
     },
@@ -259,6 +256,7 @@ export default {
         .then((response) => {
           console.log(response);
           alert("Produto salvo com sucesso!");
+          this.listarProdutos();
         })
 
         .catch((error) => {
@@ -266,7 +264,6 @@ export default {
           alert("Erro ao cadastrar novo produto");
         })
         .finally(() => {
-          this.listarProdutos();
           this.limparForm();
         });
     },
