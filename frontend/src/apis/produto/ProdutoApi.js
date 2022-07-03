@@ -5,4 +5,7 @@ export default {
         return http.get(`/produtos`);
     },
 
+    cadastrarProduto: (novoProduto) => {
+        return http.post(`/produto`);
+    },
 }

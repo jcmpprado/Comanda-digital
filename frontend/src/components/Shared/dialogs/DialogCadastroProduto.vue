@@ -26,7 +26,7 @@
                 ></v-file-input>
               </v-flex>
               <v-flex xs12>
-                <v-select label="Categoria*" required></v-select>
+                <v-select :items="categorias" label="Categoria*" required></v-select>
               </v-flex>
               <v-flex xs12>
                 <v-text-field label="Produto*" required></v-text-field>
@@ -46,7 +46,7 @@
           <v-btn color="error" small text @click="dialogCadastroProduto = false"
             >cancelar</v-btn
           >
-          <v-btn color="success" small @click="dialogCadastroProduto = false">entrar</v-btn>
+          <v-btn color="success" small @click="dialogCadastroProduto = false; cadastrarProduto()">entrar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -57,6 +57,7 @@
 export default {
   data: () => ({
     dialogCadastroProduto: false,
+    
   }),
 };
 </script>
