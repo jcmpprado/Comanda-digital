@@ -9,10 +9,6 @@ export default {
         return http.post(`/produto`,produto);
     },
 
-    atualizar: (produto) => {
-        return http.put(`/produto`,produto);
-    },
-
     apagar: (idProduto) => {
         return http.delete(`/produto/${idProduto}`)
     },
