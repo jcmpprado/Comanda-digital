@@ -85,7 +85,31 @@
       >
         <template slot="no-data"> Nenhum produto encontrado. </template>
 
-        <template class="text-caption" v-slot:[`item.action`]="{ item }">
+        <template class="text-caption" v-slot:[`item.actionStatus`]="{ item }">
+          <v-row justify="center" align-items="center">
+            <v-tooltip checkbox>
+              <template v-slot:activator="{ on, attrs }">
+                <v-checkbox
+                  v-model="checkbox"
+                ></v-checkbox>
+              </template>
+            </v-tooltip>
+          </v-row>
+        </template>
+
+        <template class="text-caption" v-slot:[`item.actionCarrossel`]="{ item }">
+          <v-row justify="center" align-items="center">
+            <v-tooltip checkbox>
+              <template v-slot:activator="{ on, attrs }">
+                <v-checkbox
+                  v-model="checkbox"
+                ></v-checkbox>
+              </template>
+            </v-tooltip>
+          </v-row>
+        </template>
+
+        <template class="text-caption" v-slot:[`item.action2`]="{ item }">
           <v-row justify="center" align-items="center">
             <!-- <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
@@ -124,8 +148,6 @@
 
 <script>
 import NavBarAdmin from "@/components/Navbar/NavBarAdmin.vue";
-import DialogCadastroProduto from "@/components/Shared/dialogs/DialogCadastroProduto.vue";
-import DialogEditarProduto from "@/components/Shared/dialogs/DialogEditarProduto.vue";
 import ProdutoApi from "@/apis/produto/ProdutoApi";
 
 export default {
@@ -135,7 +157,7 @@ export default {
       dialogCadastroProduto: false,
       DialogEditarProduto: false,
       cabecalho: [
-         {
+        {
           text: "Id",
           align: "center",
           filterable: true,
@@ -171,10 +193,22 @@ export default {
           value: "valorProduto",
         },
         {
-          text: "Açoes",
+          text: "Produto inativo",
           align: "center",
           divider: true,
-          value: "action",
+          value: "actionStatus",
+        },
+        {
+          text: "Carrossel",
+          align: "center",
+          divider: true,
+          value: "actionCarrossel",
+        },
+        {
+          text: "Ações",
+          align: "center",
+          divider: true,
+          value: "action2",
         },
       ],
       categoria: [],
@@ -192,8 +226,6 @@ export default {
 
   components: {
     NavBarAdmin,
-    DialogCadastroProduto,
-    DialogEditarProduto,
   },
 
   created() {
@@ -207,24 +239,27 @@ export default {
 
     deleteItem(idProduto) {
       if (confirm("Tem certeza que deseja excluir esse produto?")) {
-        ProdutoApi.apagar(idProduto).then((response) => {
-          response.data
-          alert("Produto excluido com êxito");
-           this.listarProdutos()
-        })
+        var accessToken = sessionStorage.getItem("accessToken");
+        var token = accessToken.replace(/"/gi, "");
 
-         .catch((error) => {
-          console.log(error);
-          alert("Erro ao excluir produto");
-        })
-        .finally(() => {
-        });
+        ProdutoApi.apagar(idProduto, token)
+          .then((response) => {
+            response.data;
+            alert("Produto excluido com êxito");
+            this.listarProdutos();
+          })
+
+          .catch((error) => {
+            console.log(error);
+            alert("Erro ao excluir produto");
+          })
+          .finally(() => {});
       }
     },
 
     listarProdutos() {
       const listaDeProdutos = {
-        idProduto:this.idProduto,
+        idProduto: this.idProduto,
         categoriaProduto: this.categoriaProduto,
         nomeProduto: this.nomeProduto,
         descricaoProduto: this.descricaoProduto,
@@ -252,7 +287,9 @@ export default {
         valorProduto: this.valorProduto,
       };
 
-      ProdutoApi.salvar(this.produto)
+      var accessToken = sessionStorage.getItem("accessToken");
+      var token = accessToken.replace(/"/gi, "");
+      ProdutoApi.salvar(this.produto, token)
         .then((response) => {
           console.log(response);
           alert("Produto salvo com sucesso!");
@@ -277,13 +314,11 @@ export default {
     },
 
     editar(idProduto) {
- 
-        ProdutoApi.editar(idProduto, ).then((response) => {
-          response.data
-          this.listarProdutos
-          alert("Produto editado com êxito");
-        });
-      
+      ProdutoApi.editar(idProduto).then((response) => {
+        response.data;
+        this.listarProdutos;
+        alert("Produto editado com êxito");
+      });
     },
   },
 };

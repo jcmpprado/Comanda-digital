@@ -2,17 +2,17 @@
   <v-container fluid>
     <h3 class="subheading grey--text my-5 titulo">Boas vindas!</h3>
 
-<div id="apresentacao" class="mt-8">
-    <p>
-      A Santa Pizza surgiu com o intuito de fazer as pessoas saborearem pizzas
-      com a família e amigos, com criteriosas escolhas de ingredientes.
-    </p>
-    <span
-      >Somos famosos pela qualidade de nossas pizzas e a massa fina, e
-      principalmente a agilidade no atendimento e entrega de nossas pizzas,
-      servindo delícias desde as tradicionais até as mais especiais.</span
-    >
-</div>
+    <div id="apresentacao" class="mt-8">
+      <p>
+        A Santa Pizza surgiu com o intuito de fazer as pessoas saborearem pizzas
+        com a família e amigos, com criteriosas escolhas de ingredientes.
+      </p>
+      <span
+        >Somos famosos pela qualidade de nossas pizzas e a massa fina, e
+        principalmente a agilidade no atendimento e entrega de nossas pizzas,
+        servindo delícias desde as tradicionais até as mais especiais.</span
+      >
+    </div>
     <v-flex>
       <v-card
         class="d-flex align-end mb-6 justify-center"
@@ -45,6 +45,12 @@
           </v-list>
         </v-bottom-sheet>
       </v-card>
+      <div class="bottomAdmin">
+        <v-btn outlined color="grey" @click="redirecionar()">
+          <span>ADMIN</span>
+          <v-icon right>mdi-account</v-icon>
+        </v-btn>
+      </div>
     </v-flex>
   </v-container>
 </template>
@@ -61,6 +67,12 @@ export default {
       { title: "Mesa 5", id: "5", to: "/apresentacao" },
     ],
   }),
+
+  methods:{
+    redirecionar(){
+      this.$router.push({ name: "ResumoAdmin" });
+    }
+  }, 
 };
 </script>
 
@@ -70,5 +82,11 @@ export default {
   font-size: 1.7em;
   text-align: center;
   font-weight: bold;
+}
+
+.bottomAdmin{
+  display: flex;
+  justify-content: flex-end;
+
 }
 </style>

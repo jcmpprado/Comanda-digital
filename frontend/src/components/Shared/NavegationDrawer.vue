@@ -37,7 +37,7 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-spacer></v-spacer>
-
+      
       <v-btn text color="grey" >
         <span>SAIR</span>
         <v-icon right>mdi-logout-variant</v-icon>

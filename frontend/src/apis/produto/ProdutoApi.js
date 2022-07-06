@@ -5,23 +5,23 @@ export default {
         return http.get(`/produtos`);
     },
 
-    salvar: (produto) => {
-        return http.post(`/produto`,produto);
+    salvar: (produto, token) => {
+        return http.post(`/produto`,produto,{ headers: {Authorization:`Bearer ${token}`}});
     },
 
-    apagar: (idProduto) => {
-        return http.delete(`/produto/${idProduto}`)
+    apagar: (idProduto, token) => {
+        return http.delete(`/produto/${idProduto}`, { headers: {Authorization:`Bearer ${token}`}});
     },
 
-    editar: (idProduto) => {
-        return http.patch(`/produto/${idProduto}`)
+    editar: (idProduto, token) => {
+        return http.patch(`/produto/${idProduto}`, { headers: {Authorization:`Bearer ${token}`}});
     },
 
     listarEstoque: () => {
         return http.get(`/estoque`);
     },
 
-    salvarEstoque: (produto) => {
-        return http.post(`/estoque`,produto);
+    salvarEstoque: (produto, token) => {
+        return http.post(`/estoque`,produto, { headers: {Authorization:`Bearer ${token}`}});
     },
 }

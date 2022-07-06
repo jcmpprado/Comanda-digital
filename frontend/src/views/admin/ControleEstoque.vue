@@ -18,6 +18,13 @@
               </v-flex>
               <v-flex xs12>
                 <v-text-field
+                  label="Fornecedor*"
+                  required
+                  v-model="produto.fornecedor"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
                   label="Quantidade*"
                   required
                   type="number"
@@ -65,11 +72,25 @@ export default {
       listaDeProdutosDoEstoque: [],
       cabecalho: [
         {
+          text: "Data de cadastro",
+          align: "center",
+          filterable: true,
+          divider: true,
+          value: "inclusao",
+        },
+        {
           text: "Produto",
           align: "center",
           filterable: true,
           divider: true,
           value: "nomeProduto",
+        },
+        {
+          text: "Fornecedor",
+          align: "center",
+          filterable: true,
+          divider: true,
+          value: "fornecedor",
         },
         {
           text: "Quantidade",
@@ -80,7 +101,9 @@ export default {
         },
       ],
       produto: {
+        inclusao: "",
         nomeProduto: "",
+        fornecedor: "",
         quantidade: "",
       },
     };
@@ -102,31 +125,40 @@ export default {
 
     listarEstoque() {
       const listaDeProdutosDoEstoque = {
+        inclusao: this.inclusao,
         nomeProduto: this.nomeProduto,
+        fornecedor: this.fornecedor,
         quantidade: this.quantidade,
       };
 
-      ProdutoApi.listarEstoque(listaDeProdutosDoEstoque).then((response) => {
-        response.data.forEach((item) => {
-          this.listaDeProdutosDoEstoque.push({
-            nomeProduto: item.nomeProduto,
-            quantidade: item.quantidadeProduto,
+      ProdutoApi.listarEstoque(listaDeProdutosDoEstoque).then(
+        (response) => {
+          response.data.forEach((item) => {
+            this.listaDeProdutosDoEstoque.push({
+              inclusao: item.inclusao,
+              nomeProduto: item.nomeProduto,
+              fornecedor: item.fornecedor,
+              quantidade: item.quantidadeProduto,
+            });
           });
-        });
-      });
+        }
+      );
     },
 
     salvarEstoque() {
       const produto = {
         nomeProduto: this.nomeProduto,
         quantidade: this.quantidade,
+        fornecedor: this.fornecedor,
       };
 
-      ProdutoApi.salvarEstoque(this.produto)
+      var accessToken = sessionStorage.getItem("accessToken");
+      var token = accessToken.replace(/"/gi, "");
+
+      ProdutoApi.salvarEstoque(this.produto, token)
         .then((response) => {
           console.log(response);
           alert("Estoque salvo com sucesso!");
-          this.listarEstoque();
         })
 
         .catch((error) => {
@@ -141,6 +173,7 @@ export default {
     limparForm() {
       this.produto.nomeProduto = [];
       this.produto.quantidade = [];
+      this.produto.fornecedor = [];
     },
   },
 };

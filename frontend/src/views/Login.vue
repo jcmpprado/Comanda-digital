@@ -11,7 +11,7 @@
               <v-layout wrap>
                 <v-flex xs12>
                   <v-text-field
-                    v-model="user"
+                    v-model="auth.user"
                     type="text"
                     label="Usuário*"
                     placeholder="Usuário"
@@ -20,12 +20,9 @@
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field
-                    v-model="senha"
-                    :type="senhaVisivel ? 'text' : 'password'"
+                    v-model="auth.senha"
                     label="Senha*"
                     placeholder="Senha"
-                    :append-icon="senhaVisivel ? 'mdi-eye' : 'mdi-eye-off'"
-                    @click:append="senhaVisivel = !senhaVisivel"
                     required
                   ></v-text-field>
                 </v-flex>
@@ -51,8 +48,10 @@ import UsuarioApi from "@/apis/usuario/UsuarioApi";
 
 export default {
   data: () => ({
-    user: "",
-    senha: "",
+    auth: {
+      user: "",
+      senha: "",
+    },
   }),
 
   components: {},
@@ -65,7 +64,15 @@ export default {
       };
 
       UsuarioApi.login(this.auth).then((response) => {
-        const respota = response.data;
+        const resposta = response.data;
+        sessionStorage.setItem("accessToken", JSON.stringify(resposta.accessToken))
+
+        // this.$router.push(
+        // sessionStorage.getItem("/ResumoAdmin")
+        // )
+        // console.log(resposta)
+        // alert("login realizado com sucesso")
+        this.$router.push({ name: "Abertura" });
       });
     },
     // login:async function(){
