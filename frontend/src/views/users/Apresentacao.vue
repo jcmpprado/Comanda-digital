@@ -1,20 +1,15 @@
 <template>
   <container>
     <NavBarCliente />
-    <v-carousel
-      cycle
-      height="400"
-      hide-delimiter-background
-      show-arrows-on-hover
-    >
-      <v-carousel-item v-for="(slide, i) in slides" :key="i">
-        <v-sheet :color="colors[i]" height="100%">
-          <v-row class="fill-height" align="center" justify="center">
-            <div class="text-h2">{{ slide }} Slide</div>
-          </v-row>
-        </v-sheet>
-      </v-carousel-item>
-    </v-carousel>
+    <v-carousel>
+    <v-carousel-item
+      v-for="(item,i) in items"
+      :key="i"
+      :src="item.src"
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    ></v-carousel-item>
+  </v-carousel>
   </container>
 </template>
 
@@ -24,19 +19,19 @@ import NavBarCliente from "@/components/Navbar/NavBarCliente.vue";
 export default {
     data () {
       return {
-        colors: [
-          'indigo',
-          'warning',
-          'pink darken-2',
-          'red lighten-1',
-          'deep-purple accent-4',
-        ],
-        slides: [
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
+        items: [
+          {
+            src: 'https://images6.alphacoders.com/609/thumbbig-609345.webp',
+          },
+          {
+            src: 'https://img.elo7.com.br/product/original/286585E/painel-adesivo-pizza-sabores-pizzaria-massas-italianas-hd-painel-adesivo-alimento.jpg',
+          },
+          {
+            src: 'https://i.pinimg.com/736x/84/be/b4/84beb4bbb6e230eef1faaf7c1805db3c.jpg',
+          },
+          {
+            src: 'https://d5y9g7a5.rocketcdn.me/wp-content/uploads/2020/11/origem-da-pizza-conheca-a-historia-dessa-iguaria-que-tanto-conquistou-as-pessoas.jpg',
+          },
         ],
       }
     },

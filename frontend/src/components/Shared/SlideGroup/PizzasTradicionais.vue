@@ -12,7 +12,7 @@
       show-arrows
     >
       <v-slide-item
-        v-for="n in 15"
+        v-for="n in 6"
         :key="n"
         v-slot="{ active, toggle }"
       >

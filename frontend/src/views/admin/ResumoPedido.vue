@@ -1,7 +1,6 @@
 <template>
   <container>
     <NavBarAdmin />
-    
     <v-card class="mt-5" elevation="14">
       <v-card-title class="justify-center">
         <v-btn class="mr-4" text icon color="black" @click="voltarPagina()">
@@ -17,20 +16,11 @@
       >
         <template slot="no-data"> Nenhum pedido encontrado. </template>
 
-         <template class="text-caption" v-slot:[`item.action`]="{ item }">
+        <template class="text-caption" v-slot:[`item.action`]="{ item }">
           <v-row justify="center" align="center">
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  class="my-4"
-                  color="primary"
-                  elevation="2"
-                  dark
-                  small
-                  v-bind="attrs"
-                  v-on="on"
-                  >Detalhar</v-btn
-                >
+              <DialogDetalharResumoPedido />
               </template>
               <span>Detalhar pedido</span>
             </v-tooltip>
@@ -43,10 +33,12 @@
 
 <script>
 import NavBarAdmin from "@/components/Navbar/NavBarAdmin.vue";
+import DialogDetalharResumoPedido from "@/components/Shared/dialogs/DialogDetalharResumoPedido.vue";
 
 export default {
   data() {
     return {
+      dialogDetalharResumoPedido: false,
       cabecalho: [
         {
           text: "Data",
@@ -77,7 +69,7 @@ export default {
           value: "valorTotal",
         },
         {
-          text: "Açoes",
+          text: "Ações",
           align: "center",
           divider: true,
           value: "action",
@@ -88,6 +80,7 @@ export default {
 
   components: {
     NavBarAdmin,
+    DialogDetalharResumoPedido,
   },
 
   created() {
@@ -132,11 +125,10 @@ export default {
       const index = this.itens.indexOf(item);
       confirm("Tem certeza que deseja excluir essa faixa etária?") &&
         this.itens.splice(index, 1);
-    }
+    },
   },
 };
 </script>
 
 <style>
-
 </style>

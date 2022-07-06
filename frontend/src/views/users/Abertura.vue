@@ -45,12 +45,12 @@
           </v-list>
         </v-bottom-sheet>
       </v-card>
-      <div class="bottomAdmin">
-        <v-btn outlined color="grey" @click="redirecionar()">
+      <v-card class="d-flex align-end ml-8 mb-6 justify-center" flat tile>
+        <v-btn color="grey darken-3" block outlined @click="redirecionar()">
           <span>ADMIN</span>
           <v-icon right>mdi-account</v-icon>
         </v-btn>
-      </div>
+      </v-card>
     </v-flex>
   </v-container>
 </template>
@@ -68,11 +68,11 @@ export default {
     ],
   }),
 
-  methods:{
-    redirecionar(){
+  methods: {
+    redirecionar() {
       this.$router.push({ name: "ResumoAdmin" });
-    }
-  }, 
+    },
+  },
 };
 </script>
 
@@ -82,11 +82,5 @@ export default {
   font-size: 1.7em;
   text-align: center;
   font-weight: bold;
-}
-
-.bottomAdmin{
-  display: flex;
-  justify-content: flex-end;
-
 }
 </style>

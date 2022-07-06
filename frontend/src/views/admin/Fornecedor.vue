@@ -172,7 +172,7 @@ export default {
           value: "obsFornecedor",
         },
         {
-          text: "Ações:",
+          text: "Ações",
           align: "center",
           divider: true,
           value: "action",
