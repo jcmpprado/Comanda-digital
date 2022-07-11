@@ -183,8 +183,10 @@ export default {
         user: this.user,
         tipo: this.tipo,
       };
-
-      UsuarioApi.listarUsuario(listaDeUsuarios).then((response) => {
+      var accessToken = sessionStorage.getItem("accessToken");
+      var token = accessToken.replace(/"/gi, "");
+      
+      UsuarioApi.listarUsuario(listaDeUsuarios, token).then((response) => {
         response.data.forEach((item) => {
           this.listaDeUsuarios.push({
             idUser: item.idUser,

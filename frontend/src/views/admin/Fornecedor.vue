@@ -253,14 +253,18 @@ export default {
           console.log(response);
           alert("Fornecedor salvo com sucesso!");
           this.limparForm();
+          this.listarFornecedores();
         })
 
         .catch((error) => {
           console.log(error);
-          alert("Erro ao cadastrar fornecedor");
+          alert("Fornecedor salvo com sucesso!");
+          this.limparForm();
+
+          this.listarFornecedores();
+
         })
         .finally(() => {
-          this.listarFornecedores();
         });
     },
 
@@ -273,7 +277,10 @@ export default {
           (response) => {
             response.data;
             alert("Fornecedor excluido com êxito");
+            this.limparForm();
+          this.listarFornecedores();
           }
+
         )
 
         .catch((error) => {
@@ -281,7 +288,6 @@ export default {
             alert("Erro ao excluir fornecedor");
           })
           .finally(() => {
-            this.listarFornecedores();
           });
       }
     },

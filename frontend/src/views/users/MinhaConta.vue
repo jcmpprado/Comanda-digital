@@ -69,7 +69,6 @@
           class="ma-2 justify-end"
           color="primary"
           dark
-          small
           v-bind="attrs"
           v-on="on"
           @click="fecharConta()"
@@ -82,6 +81,7 @@
 
 <script>
 import PedidoApi from "@/apis/pedido/PedidoApi";
+import FinanceiroApi from "@/apis/financeiro/FinanceiroApi";
 import NavBarCliente from "@/components/Navbar/NavBarCliente.vue";
 
 export default {
@@ -118,12 +118,12 @@ export default {
           divider: true,
           value: "status",
         },
-        {
-          text: "Ações",
-          align: "center",
-          divider: true,
-          value: "action",
-        },
+        // {
+        //   text: "Ações",
+        //   align: "center",
+        //   divider: true,
+        //   value: "action",
+        // },
       ],
       pedido: {
         criacao:"",
@@ -139,7 +139,6 @@ export default {
   },
 
   created() {
-    this.initialize();
     this.listarPedidosRealizados();
   },
 
@@ -149,35 +148,37 @@ export default {
     },
 
     fecharConta() {
+      this.salvarFinanceiro();
       this.$router.push({ name: "Agradecimento" });
     },
 
-    initialize() {
-      this.itens = [
-        {
-          descricao:
-            "Pizza Frango com catupiry - Molho de tomate, muçarela, catupiry cremoso, frango e orégano",
-          quantidade: "1",
-          valorUnitario: "49,90",
-          subtotal: "49,90",
-        },
-        {
-          descricao:
-            "Pizza Brigadeiro - Creme de leite, granulado e chocolate preto",
-          quantidade: "1",
-          valorUnitario: "39,90",
-          subtotal: "39,90",
-        },
+    salvarFinanceiro () {
+      var accessToken = sessionStorage.getItem("accessToken");
+      var mesa = sessionStorage.getItem("mesa");
+      var usuario = sessionStorage.getItem("usuario");
 
-        {
-          descricao: "Refrigerante - Coca-Cola Zero 2,5l",
-          quantidade: "2",
-          valorUnitario: "9,90",
-          subtotal: "19,80",
-        },
-      ];
+      var token = accessToken.replace(/"/gi, "");
+      var mesa = mesa.replace(/"/gi, "");
+      var usuario = usuario.replace(/"/gi, "");
 
-    
+      const payloadPedido = {
+        listaPedidos: this.listaDePedidos.map(item => (item)),
+        mesa: mesa,
+        autor: usuario
+      }
+      FinanceiroApi.salvarRegistroFinanceiro(payloadPedido, token)
+        .then((response) => {
+          console.log(response);
+          alert("Registro financeiro realizado com sucesso");
+          this.listaDePedidos=[];
+        })
+
+        .catch((error) => {
+          console.log(error);
+          alert("Erro ao realizar registro financeiro");
+        })
+        .finally(() => {
+        });
     },
 
     listarPedidosRealizados(){

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-// import FornecedorApi from "@/apis/fornecedor/FornecedorApi";
+import FinanceiroApi from "@/apis/financeiro/FinanceiroApi"
 import NavBarAdmin from "@/components/Navbar/NavBarAdmin.vue";
 
 export default {
@@ -34,7 +34,7 @@ export default {
           align: "center",
           filterable: true,
           divider: true,
-          value: "idFinanceiro",
+          value: "id",
         },
         {
           text: "data de Finalização",
@@ -92,8 +92,6 @@ export default {
   },
 
   created() {
-    this.inicializar();
-    // this.listarFornecedores();
   },
 
   methods: {
@@ -101,99 +99,14 @@ export default {
       this.$router.push({ name: "ResumoAdmin" });
     },
 
-    inicializar(){
-      this.items = [
-        {
-          idFinanceiro: "1",
-          dataFinalizacao: "06/07/2022",
-          Mesa: "6",
-          listaPedidos: ["Pizza Frango com catupiry, Pizza brigadeiro, Coca-cola 2,5l ||", " Pizza Frango com catupiry, Pizza brigadeiro, Coca-cola 2,5l"],
-          valorTotal: "89,90",
-          autor: "Vitor",
-        },
-        {
-          idFinanceiro: "2",
-          dataFinalizacao: "06/07/2022",
-          Mesa: "7",
-          listaPedidos: ["Pizza Frango com catupiry, Pizza brigadeiro, Coca-cola 2,5l ||", " Pizza Frango com catupiry, Pizza brigadeiro, Coca-cola 2,5l ||", " Pizza Frango com catupiry, Pizza brigadeiro, Coca-cola 2,5l"],
-          valorTotal: "119,90",
-          autor: "Vitor",
-        },
-      ];
+    
 
-    },
+    listarRegistro (){
 
-    // listarFornecedores() {
-    //   const listaDeFornecedores = {
-    //     idFornecedor: this.idFornecedor,
-    //     cnpjFornecedor: this.cnpjFornecedor,
-    //     nomeFornecedor: this.nomeFornecedor,
-    //     telefoneFornecedor: this.telefoneFornecedor,
-    //     celularFornecedor: this.celularFornecedor,
-    //     enderecoFornecedor: this.enderecoFornecedor,
-    //     obsFornecedor: this.obsFornecedor,
-    //   };
 
-    //   FornecedorApi.listarFornecedores(this.listaDeFornecedores).then(
-    //     (response) => {
-    //       response.data.forEach((item) => {
-    //         console.log(response);
-    //         this.listaDeFornecedores.push({
-    //           idFornecedor: item.idFornecedor,
-    //           cnpjFornecedor: item.cnpjFornecedor,
-    //           nomeFornecedor: item.nomeFornecedor,
-    //           telefoneFornecedor: item.telefoneFornecedor,
-    //           celularFornecedor: item.celularFornecedor,
-    //           enderecoFornecedor: item.enderecoFornecedor,
-    //           obsFornecedor: item.obsFornecedor,
-    //         });
-    //       });
-    //     }
-    //   );
-    // },
-
-    // salvarFornecedor(){
-
-    //   const fornecedor = {
-    //     cnpjFornecedor: this.cnpjFornecedorFormatado,
-    //     nomeFornecedor: this.nomeFornecedor,
-    //     telefoneFornecedor: this.telefoneFornecedor,
-    //     celularFornecedor: this.celularFornecedor,
-    //     enderecoFornecedor: this.enderecoFornecedor,
-    //     obsFornecedor: this.obsFornecedor,
-    //   };
-
-    //   var accessToken = sessionStorage.getItem("accessToken");
-    //   var token = accessToken.replace(/"/gi, "");
-
-    //   FornecedorApi.salvarFornecedor(this.fornecedor, token)
-    //   .then((response) => {
-    //     console.log(response);
-    //     alert("Fornecedor salvo com sucesso!");
-    //   })
-    // },
-
-    // deletarFornecedor(idFornecedor){
-    //   if (confirm("Tem certeza que deseja excluir esse fornecedor?")) {
-    //     var accessToken = sessionStorage.getItem("accessToken");
-    //     var token = accessToken.replace(/"/gi, "");
-
-    //     FornecedorApi.deletarFornecedor(idFornecedor, token)
-    //     .then((response) =>{
-    //       response.data;
-    //       alert("Fornecedor excluido com êxito");
-    //     })
-    //   }
-    // },
-
-    // limparForm() {
-    //   this.fornecedor.cnpjFornecedor = [];
-    //   this.fornecedor.nomeFornecedor = [];
-    //   this.fornecedor.telefoneFornecedor = [];
-    //   this.fornecedor.celularFornecedor = [];
-    //   this.fornecedor.enderecoFornecedor = [];
-    //   this.fornecedor.obsFornecedor = [];
-    // },
+    FinanceiroApi.listarRegistroFinanceiro()
+  }
+    
   },
 };
 </script>

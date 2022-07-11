@@ -5,8 +5,8 @@ export default {
         return http.post(`/auth`, body)
     },
 
-    listarUsuario: () => {
-        return http.get(`/usuarios`);
+    listarUsuario: (token) => {
+        return http.get(`/usuarios`, { headers: {Authorization:`Bearer ${token}`}});
     },
 
     salvarUsuario: (usuario, token) => {
