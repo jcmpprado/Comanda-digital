@@ -13,6 +13,10 @@ export default {
         return http.post(`/produto`,produto,{ headers: {Authorization:`Bearer ${token}`}});
     },
 
+    salvarPedido: (pedido, token) => {
+        return http.post(`/pedido`, pedido,{ headers: {Authorization:`Bearer ${token}`}});
+    },
+
     apagar: (idProduto, token) => {
         return http.delete(`/produto/${idProduto}`, { headers: {Authorization:`Bearer ${token}`}});
     },

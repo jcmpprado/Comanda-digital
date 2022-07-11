@@ -66,6 +66,7 @@ export default {
       UsuarioApi.login(this.auth).then((response) => {
         const resposta = response.data;
         sessionStorage.setItem("accessToken", JSON.stringify(resposta.accessToken))
+        sessionStorage.setItem("usuario", JSON.stringify(resposta.usuario))
 
         // this.$router.push(
         // sessionStorage.getItem("/ResumoAdmin")

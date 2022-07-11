@@ -33,7 +33,7 @@
               v-for="tile in tiles"
               :key="tile.title"
               :to="tile.to"
-              @click="sheet = false"
+              @click="gravarMesa(tile.id)"
             >
               <v-list-item-avatar>
                 <v-avatar size="32px" tile>
@@ -71,6 +71,14 @@ export default {
   methods: {
     redirecionar() {
       this.$router.push({ name: "ResumoAdmin" });
+    },
+
+    gravarMesa(idMesa) {
+      sessionStorage.setItem(
+        "mesa",
+        JSON.stringify(idMesa)
+      );
+      sheet = false;
     },
   },
 };

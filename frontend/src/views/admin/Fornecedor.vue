@@ -58,7 +58,9 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="error" small text @click="limparForm()">cancelar</v-btn>
-        <v-btn color="success" small @click="salvarFornecedor()">Continuar</v-btn>
+        <v-btn color="success" small @click="salvarFornecedor()"
+          >Continuar</v-btn
+        >
       </v-card-actions>
     </v-card>
     <v-card class="mt-5" elevation="14">
@@ -233,8 +235,7 @@ export default {
       );
     },
 
-    salvarFornecedor(){
-      
+    salvarFornecedor() {
       const fornecedor = {
         cnpjFornecedor: this.cnpjFornecedorFormatado,
         nomeFornecedor: this.nomeFornecedor,
@@ -248,22 +249,40 @@ export default {
       var token = accessToken.replace(/"/gi, "");
 
       FornecedorApi.salvarFornecedor(this.fornecedor, token)
-      .then((response) => {
-        console.log(response);
-        alert("Fornecedor salvo com sucesso!");
-      })
+        .then((response) => {
+          console.log(response);
+          alert("Fornecedor salvo com sucesso!");
+          this.limparForm();
+        })
+
+        .catch((error) => {
+          console.log(error);
+          alert("Erro ao cadastrar fornecedor");
+        })
+        .finally(() => {
+          this.listarFornecedores();
+        });
     },
 
-    deletarFornecedor(idFornecedor){
+    deletarFornecedor(idFornecedor) {
       if (confirm("Tem certeza que deseja excluir esse fornecedor?")) {
         var accessToken = sessionStorage.getItem("accessToken");
         var token = accessToken.replace(/"/gi, "");
 
-        FornecedorApi.deletarFornecedor(idFornecedor, token)
-        .then((response) =>{
-          response.data;
-          alert("Fornecedor excluido com êxito");
-        })
+        FornecedorApi.deletarFornecedor(idFornecedor, token).then(
+          (response) => {
+            response.data;
+            alert("Fornecedor excluido com êxito");
+          }
+        )
+
+        .catch((error) => {
+            console.log(error);
+            alert("Erro ao excluir fornecedor");
+          })
+          .finally(() => {
+            this.listarFornecedores();
+          });
       }
     },
 
@@ -274,6 +293,7 @@ export default {
       this.fornecedor.celularFornecedor = [];
       this.fornecedor.enderecoFornecedor = [];
       this.fornecedor.obsFornecedor = [];
+      this.listaDeFornecedores = [];
     },
   },
 };

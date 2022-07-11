@@ -159,6 +159,8 @@ export default {
         .then((response) => {
           console.log(response);
           alert("Estoque salvo com sucesso!");
+          this.limparForm();
+
         })
 
         .catch((error) => {
@@ -166,14 +168,15 @@ export default {
           alert("Erro ao dar entrada no estoque");
         })
         .finally(() => {
-          this.limparForm();
-        });
+          this.listarEstoque()
+;        });
     },
 
     limparForm() {
       this.produto.nomeProduto = [];
       this.produto.quantidade = [];
       this.produto.fornecedor = [];
+      this.listaDeProdutosDoEstoque = [];
     },
   },
 };

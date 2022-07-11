@@ -38,7 +38,8 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase grey--text">
         <v-btn dark text @click="minhaConta()">Minha conta</v-btn>
-        <v-btn dark text @click="cardapio()">Cardápio</v-btn>
+        <!-- <v-btn dark text @click="cardapio()">Cardápio</v-btn> -->
+        <v-btn dark text @click="cardapioReserva()">Cardápio</v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -73,6 +74,11 @@ export default {
 
     cardapio() {
       this.$router.push({ name: "Cardapio" });
+
+    },
+
+    cardapioReserva() {
+      this.$router.push({ name: "CardapioReserva" });
 
     }
   },

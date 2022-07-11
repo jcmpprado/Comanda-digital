@@ -148,16 +148,19 @@ export default {
 
         UsuarioApi.apagar(idUser, token)
           .then((response) => {
-            console.log(response)
+            console.log(response);
             response.data;
             alert("Usuário excluido com êxito");
+            this.limparForm();
           })
 
           .catch((error) => {
             console.log(error);
             alert("Erro ao excluir usuário");
           })
-          .finally(() => {});
+          .finally(() => {
+            this.listarUsuario();
+          });
       }
     },
 
@@ -192,6 +195,7 @@ export default {
         .then((response) => {
           console.log(response);
           alert("Usuário salvo com sucesso!");
+          this.limparForm();
         })
 
         .catch((error) => {
@@ -199,7 +203,7 @@ export default {
           alert("Erro ao cadastrar novo usuário");
         })
         .finally(() => {
-          this.limparForm();
+          this.listarUsuario();
         });
     },
 
@@ -207,6 +211,7 @@ export default {
       this.usuario.user = [];
       this.usuario.senha = [];
       this.usuario.tipo = [];
+      this.listaDeUsuarios = [];
     },
   },
 };

@@ -89,21 +89,20 @@
           <v-row justify="center" align-items="center">
             <v-tooltip checkbox>
               <template v-slot:activator="{ on, attrs }">
-                <v-checkbox
-                  v-model="checkbox"
-                ></v-checkbox>
+                <v-checkbox v-model="checkbox"></v-checkbox>
               </template>
             </v-tooltip>
           </v-row>
         </template>
 
-        <template class="text-caption" v-slot:[`item.actionCarrossel`]="{ item }">
+        <template
+          class="text-caption"
+          v-slot:[`item.actionCarrossel`]="{ item }"
+        >
           <v-row justify="center" align-items="center">
             <v-tooltip checkbox>
               <template v-slot:activator="{ on, attrs }">
-                <v-checkbox
-                  v-model="checkbox"
-                ></v-checkbox>
+                <v-checkbox v-model="checkbox"></v-checkbox>
               </template>
             </v-tooltip>
           </v-row>
@@ -228,10 +227,10 @@ export default {
     NavBarAdmin,
   },
 
-  created: () => {
+  created() {
     this.listarProdutos();
   },
-  
+
   methods: {
     voltarPagina() {
       this.$router.push({ name: "ResumoAdmin" });
@@ -246,14 +245,16 @@ export default {
           .then((response) => {
             response.data;
             alert("Produto excluido com êxito");
-            this.listarProdutos();
+            this.limparForm();
           })
 
           .catch((error) => {
             console.log(error);
             alert("Erro ao excluir produto");
           })
-          .finally(() => {});
+          .finally(() => {
+            this.listarProdutos();
+          });
       }
     },
 
@@ -293,7 +294,7 @@ export default {
         .then((response) => {
           console.log(response);
           alert("Produto salvo com sucesso!");
-          this.listarProdutos();
+          this.limparForm();
         })
 
         .catch((error) => {
@@ -301,7 +302,7 @@ export default {
           alert("Erro ao cadastrar novo produto");
         })
         .finally(() => {
-          this.limparForm();
+          this.listarProdutos();
         });
     },
 
@@ -311,6 +312,7 @@ export default {
       this.produto.nomeProduto = [];
       this.produto.descricaoProduto = [];
       this.produto.valorProduto = [];
+      this.listaDeProdutos = [];
     },
 
     editar(idProduto) {

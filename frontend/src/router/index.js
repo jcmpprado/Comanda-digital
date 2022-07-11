@@ -36,6 +36,11 @@ const routes = [
     component: () => import('../views/users/Cardapio.vue'),
   },
   {
+    path: '/cardapio-reserva',
+    name: 'CardapioReserva',
+    component: () => import('../views/users/CardapioReserva.vue'),
+  },
+  {
     path: '/resumo-admin',
     name: 'ResumoAdmin',
     component: () => import('../views/admin/ResumoAdmin.vue'),
