@@ -11,15 +11,21 @@
             <v-layout wrap>
               <v-flex xs12>
                 <v-text-field
-                  label="User*"
                   v-model="usuario.user"
+                  prepend-inner-icon="mdi-account"
+                  label="User*"
                 ></v-text-field>
               </v-flex>
               <v-flex xs12>
                 <v-text-field
                   label="Senha*"
+                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.required, rules.min]"
+                  :type="show1 ? 'text' : 'password'"
+                  prepend-inner-icon="mdi-lock"
                   required
                   v-model="usuario.senha"
+                  @click:append="show1 = !show1"
                 ></v-text-field>
               </v-flex>
               <v-flex xs12>
@@ -125,6 +131,12 @@ export default {
         senha: "",
         tipo: "",
       },
+      show1: false,
+        password: 'Password',
+        rules: {
+          required: value => !!value || 'Required.',
+          emailMatch: () => (`The email and password you entered don't match`),
+        },
     };
   },
 
@@ -152,6 +164,8 @@ export default {
             response.data;
             alert("Usuário excluido com êxito");
             this.limparForm();
+            this.listarUsuario();
+
           })
 
           .catch((error) => {
@@ -159,7 +173,6 @@ export default {
             alert("Erro ao excluir usuário");
           })
           .finally(() => {
-            this.listarUsuario();
           });
       }
     },

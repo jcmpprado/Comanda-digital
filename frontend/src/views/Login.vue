@@ -15,15 +15,21 @@
                     type="text"
                     label="Usuário*"
                     placeholder="Usuário"
+                    prepend-inner-icon="mdi-account"
                     required
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field
                     v-model="auth.senha"
+                    :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :rules="[rules.required, rules.min]"
+                    :type="show1 ? 'text' : 'password'"
                     label="Senha*"
                     placeholder="Senha"
+                    prepend-inner-icon="mdi-lock"
                     required
+                    @click:append="show1 = !show1"
                   ></v-text-field>
                 </v-flex>
               </v-layout>
@@ -34,9 +40,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="error" small text>cancelar</v-btn>
-          <v-btn color="success" small @click="login()"
-            >Realizar login</v-btn
-          >
+          <v-btn color="success" small @click="login()">Realizar login</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -52,6 +56,12 @@ export default {
       user: "",
       senha: "",
     },
+    show1: false,
+        password: 'Password',
+        rules: {
+          required: value => !!value || 'Required.',
+          emailMatch: () => (`The email and password you entered don't match`),
+        },
   }),
 
   components: {},
@@ -65,8 +75,11 @@ export default {
 
       UsuarioApi.login(this.auth).then((response) => {
         const resposta = response.data;
-        sessionStorage.setItem("accessToken", JSON.stringify(resposta.accessToken))
-        sessionStorage.setItem("usuario", JSON.stringify(resposta.usuario))
+        sessionStorage.setItem(
+          "accessToken",
+          JSON.stringify(resposta.accessToken)
+        );
+        sessionStorage.setItem("usuario", JSON.stringify(resposta.usuario));
 
         // this.$router.push(
         // sessionStorage.getItem("/ResumoAdmin")

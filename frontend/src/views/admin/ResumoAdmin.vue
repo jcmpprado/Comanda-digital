@@ -6,7 +6,7 @@
       Bem vindo ao painel do administrador.
     </p>
     <span
-      >Aqui você pode acompanhar o resumo de todos os pedidos relizados e realizar alterações no cardápio.</span
+      >Aqui você pode cadastrar novos usuários e fornecedores, gerenciar o estoque, acompanhar o resumo de todos os pedidos relizados e realizar alterações no cardápio.</span
     >
 </div>
   </container>

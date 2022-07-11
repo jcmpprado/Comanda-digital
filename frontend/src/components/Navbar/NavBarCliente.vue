@@ -39,7 +39,7 @@
       <v-toolbar-title class="text-uppercase grey--text">
         <v-btn dark text @click="minhaConta()">Minha conta</v-btn>
         <!-- <v-btn dark text @click="cardapio()">Cardápio</v-btn> -->
-        <v-btn dark text @click="cardapioReserva()">Cardápio</v-btn>
+        <v-btn dark text @click="cardapioReserva()">Pedido</v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 

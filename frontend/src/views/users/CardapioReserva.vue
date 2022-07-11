@@ -239,7 +239,7 @@ export default {
       var usuario = usuario.replace(/"/gi, "");
 
       const payloadPedido = {
-        listaProd: this.listaDeProdutosSelecionados.map(item => ({nomeProduto: item.nomeProduto})),
+        listaProd: this.listaDeProdutosSelecionados.map(item => (item.nomeProduto)),
         mesa: mesa,
         autor: usuario
       }
@@ -247,7 +247,7 @@ export default {
         .then((response) => {
           console.log(response);
           alert("Pedido realizado com sucesso");
-          this.listarPedido();
+          this.listaDeProdutosSelecionados=[];
         })
 
         .catch((error) => {
