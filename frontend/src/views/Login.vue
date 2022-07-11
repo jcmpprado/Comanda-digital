@@ -89,7 +89,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .titulo {
   display: block;
   font-size: 1.17em;

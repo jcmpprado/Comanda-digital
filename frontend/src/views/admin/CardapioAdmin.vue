@@ -228,10 +228,10 @@ export default {
     NavBarAdmin,
   },
 
-  created() {
+  created: () => {
     this.listarProdutos();
   },
-
+  
   methods: {
     voltarPagina() {
       this.$router.push({ name: "ResumoAdmin" });

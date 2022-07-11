@@ -5,6 +5,10 @@ export default {
         return http.get(`/produtos`);
     },
 
+    listarProdutosPorCategoria: (categoria) => {
+        return http.get(`/categoria/${categoria}`);
+    },
+
     salvar: (produto, token) => {
         return http.post(`/produto`,produto,{ headers: {Authorization:`Bearer ${token}`}});
     },

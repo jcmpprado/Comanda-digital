@@ -1,5 +1,5 @@
 <template>
-   <v-container>
+   <v-container id="app">
       <NavegationDrawerVue />
       <!-- <router-view /> -->
    </v-container>

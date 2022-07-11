@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" class="inspire">
     <v-navigation-drawer v-model="drawer" app dark>
       <v-card class="flexcard py-5" color="secundary" dark height="200px">
         <v-list-item>

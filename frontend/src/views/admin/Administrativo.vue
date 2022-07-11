@@ -1,5 +1,5 @@
 <template>
-  <container>
+  <container id="administrativo">
     <NavBarAdmin />
     <v-card elevation="10">
       <v-card-title>
@@ -148,9 +148,9 @@ export default {
 
         UsuarioApi.apagar(idUser, token)
           .then((response) => {
+            console.log(response)
             response.data;
             alert("Usuário excluido com êxito");
-            this.listarProdutos();
           })
 
           .catch((error) => {
@@ -192,7 +192,6 @@ export default {
         .then((response) => {
           console.log(response);
           alert("Usuário salvo com sucesso!");
-          this.listarUsuario();
         })
 
         .catch((error) => {
@@ -205,9 +204,9 @@ export default {
     },
 
     limparForm() {
-      this.novoUsuario.user = [];
-      this.novoUsuario.senha = [];
-      this.novoUsuario.tipo = [];
+      this.usuario.user = [];
+      this.usuario.senha = [];
+      this.usuario.tipo = [];
     },
   },
 };
