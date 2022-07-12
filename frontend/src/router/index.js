@@ -35,6 +35,12 @@ const routes = [
     name: 'Cardapio',
     component: () => import('../views/users/Cardapio.vue'),
   },
+
+  {
+    path: '/pedido-cozinha',
+    name: 'PedidoCozinha',
+    component: () => import('../views/users/PedidoCozinha.vue'),
+  },
   {
     path: '/cardapio-reserva',
     name: 'CardapioReserva',

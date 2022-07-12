@@ -51,6 +51,12 @@
           <v-icon right>mdi-account</v-icon>
         </v-btn>
       </v-card>
+      <v-card class="d-flex align-end ml-8 mb-6 justify-center" flat tile>
+        <v-btn color="grey darken-3" block outlined @click="redirecionarCozinha()">
+          <span>Cozinha</span>
+          <v-icon right>mdi-</v-icon>
+        </v-btn>
+      </v-card>
     </v-flex>
   </v-container>
 </template>
@@ -65,12 +71,18 @@ export default {
       { title: "Mesa 3", id: "3", to: "/apresentacao" },
       { title: "Mesa 4", id: "4", to: "/apresentacao" },
       { title: "Mesa 5", id: "5", to: "/apresentacao" },
+      { title: "Mesa 6", id: "6", to: "/apresentacao" },
+      { title: "Mesa 7", id: "7", to: "/apresentacao" },
     ],
   }),
 
   methods: {
     redirecionar() {
       this.$router.push({ name: "ResumoAdmin" });
+    },
+
+    redirecionarCozinha() {
+      this.$router.push({ name: "PedidoCozinha" });
     },
 
     gravarMesa(idMesa) {

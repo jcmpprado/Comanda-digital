@@ -1,6 +1,6 @@
 <template>
   <container>
-    <NavBarAdmin />
+    <!-- <NavBarAdmin /> -->
     <v-card class="mt-5" elevation="14">
       <v-card-title class="justify-center">
         <v-btn class="mr-4" text icon color="black" @click="voltarPagina()">
@@ -18,11 +18,10 @@
 
         <template class="text-caption" v-slot:[`item.action`]="{ item }">
           <v-row justify="center" align="center">
-            <v-tooltip bottom>
+           <v-tooltip checkbox>
               <template v-slot:activator="{ on, attrs }">
-              <DialogDetalharResumoPedido />
+                <v-checkbox v-model="checkbox"></v-checkbox>
               </template>
-              <span>Detalhar pedido</span>
             </v-tooltip>
           </v-row>
         </template>
@@ -69,7 +68,7 @@ export default {
           value: "valorTotal",
         },
         {
-          text: "Ações",
+          text: "Finalizado",
           align: "center",
           divider: true,
           value: "action",

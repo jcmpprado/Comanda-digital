@@ -13,7 +13,8 @@
         dense
         class="pr-3 pl-3 mt-5 elevation-1 text-caption"
         :headers="cabecalho"
-        :items="items"
+        :items="listaDeRegistros"
+        :key="registros.id"
       >
         <template slot="no-data"> Nenhum fornecedor encontrado. </template>
       </v-data-table>
@@ -28,6 +29,7 @@ import NavBarAdmin from "@/components/Navbar/NavBarAdmin.vue";
 export default {
   data() {
     return {
+      listaDeRegistros: [],
       cabecalho: [
         {
           text: "Id",
@@ -48,7 +50,7 @@ export default {
           align: "center",
           filterable: true,
           divider: true,
-          value: "Mesa",
+          value: "mesa",
         },
         {
           text: "Pedido(s)",
@@ -72,18 +74,12 @@ export default {
           value: "autor",
         },
       ],
-      listaDePedidosFinalizados: "",
-      // pedidoFinalizado: {
-      //   idFinanceiro: "",
-      //   dataFinalizacao: "",
-      //   mesa: "",
-      //   listaPedidos: {
-      //     idPedido:"",
-      //     criacao: "",
-      //     mesa: "",
-
-      //   },
-      // },
+      registros: {
+        id: "",
+        dataFinalizacao: "",
+        mesa: "",
+        listaPedidos: [],
+      },
     };
   },
 
@@ -92,6 +88,7 @@ export default {
   },
 
   created() {
+    this.listarRegistro();
   },
 
   methods: {
@@ -99,12 +96,30 @@ export default {
       this.$router.push({ name: "ResumoAdmin" });
     },
 
-    
-
     listarRegistro (){
+    const listaDeRegistros= {
+      id: this._id,
+      dataFinalizacao: this.dataFinalizacao,
+      mesa: this.mesa,
+      listaPedidos: this.listaPedidos,
+      autor: this.autor,
+    }
 
+console.log(listaDeRegistros)
 
-    FinanceiroApi.listarRegistroFinanceiro()
+    FinanceiroApi.listarRegistroFinanceiro(listaDeRegistros)
+    .then((response) => {
+      response.data.forEach((item) => {
+        this.listaDeRegistros.push({
+          id:item._id,
+          dataFinalizacao: item.dataFinalizacao,
+          mesa: item.mesa,
+          listaPedidos: item.listaPedidos,
+          autor: item.autor,
+          valorTotal: 50,
+        })
+      })
+    })
   }
     
   },

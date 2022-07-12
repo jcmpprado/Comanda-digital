@@ -163,12 +163,13 @@ export default {
 
       const payloadPedido = {
         listaPedidos: this.listaDePedidos.map(item => (item)),
+        // listaDePedidos:[],
         mesa: mesa,
         autor: usuario
       }
+          console.log(payloadPedido);
       FinanceiroApi.salvarRegistroFinanceiro(payloadPedido, token)
         .then((response) => {
-          console.log(response);
           alert("Registro financeiro realizado com sucesso");
           this.listaDePedidos=[];
         })

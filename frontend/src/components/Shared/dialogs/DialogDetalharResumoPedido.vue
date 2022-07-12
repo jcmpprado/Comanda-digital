@@ -63,7 +63,7 @@ methods:{
     initialize() {
         this.itens = [
           {
-            produtos: "Pizza Frango com catupiry, Pizza brigadeiro, Coca-cola 2,5l",
+            produtos: "Pizza Frango com cheddar, Coca-cola lata",
           },
         ];
       },

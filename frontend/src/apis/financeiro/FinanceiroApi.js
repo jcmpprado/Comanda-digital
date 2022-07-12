@@ -1,8 +1,9 @@
 import http from "../http-config";
 
 export default {
-    salvarRegistroFinanceiro: () => {
-        return http.post(`financeiro`);
+    salvarRegistroFinanceiro: (payload, token) => {
+        console.log("passei aqui", payload)
+        return http.post(`financeiro`, payload, { headers: {Authorization:`Bearer ${token}`}});
     },
 
     listarRegistroFinanceiro : () => {
